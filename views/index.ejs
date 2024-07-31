@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style.css">
+  <title>Voting Page</title>
+</head>
+<body>
+  <%- include('partials/header') %>
+  <h1>Vote for Your Candidate</h1>
+  <% if (isLoggedIn && !user.hasVoted) { %>
+    <form id="vote-form" action="/vote" method="POST">
+      <div id="candidates">
+        <div>
+          <input type="radio" name="candidate" value="Candidate A" required> Candidate A
+        </div>
+        <div>
+          <input type="radio" name="candidate" value="Candidate B" required> Candidate B
+        </div>
+        <div>
+          <input type="radio" name="candidate" value="Candidate C" required> Candidate C
+        </div>
+        <div>
+          <input type="radio" name="candidate" value="Candidate D" required> Candidate D
+        </div>
+        <button type="submit" id="vote-button">Vote</button>
+      </div>
+      <p id="message"></p>
+    </form>
+  <% } else { %>
+    <p><%= isLoggedIn ? 'You have already voted' : 'You need to log in to vote' %></p>
+  <% } %>
+  <script src="js/app.js"></script>
+  <%- include('partials/footer') %>
+</body>
+</html>
